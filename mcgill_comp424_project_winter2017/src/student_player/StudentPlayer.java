@@ -3,6 +3,7 @@ package student_player;
 import java.util.ArrayList;
 
 import boardgame.Move;
+import bohnenspiel.BohnenspielBoard;
 import bohnenspiel.BohnenspielBoardState;
 import bohnenspiel.BohnenspielMove;
 import bohnenspiel.BohnenspielPlayer;
@@ -26,12 +27,16 @@ public class StudentPlayer extends BohnenspielPlayer {
 	 * for another example agent.
 	 **/
 	
-	private Solver solver;
+	private Minimax solver;
 	
 	public BohnenspielMove chooseMove(BohnenspielBoardState board_state)
 	{
-		if (solver == null)
-			solver = Minimax(new Minimax.Node(null, board_state, 0, 0, this.player_id));
+		if (solver == null) {
+			solver = new Minimax();
+			solver.findAndSet(board_state, null, depth);
+		};
+		
+		
 		
 		// Get the contents of the pits so we can use it to make decisions.
 		int[][] pits = board_state.getPits();
