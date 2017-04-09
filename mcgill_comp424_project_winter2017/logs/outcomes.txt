@@ -34,3 +34,22 @@
 41,xxxxxxxxx,GreedyPlayer,0,xxxxxxxxx,18,game00041.log,
 42,RandomPlayer,Human,1,Human,23,game00042.log,
 43,260617865,260617865,0,260617865,22,game00043.log,
+44,260617865,260617865,0,260617865,22,game00044.log,
+45,260617865,260617865,0,260617865,22,game00045.log,
+46,260617865,260617865,0,260617865,22,game00046.log,
+47,260617865,260617865,0,260617865,22,game00047.log,
+48,260617865,260617865,0,260617865,22,game00048.log,
+49,GreedyPlayer,260617865,1,260617865,19,game00049.log,
+50,GreedyPlayer,260617865,0,GreedyPlayer,0,game00050.log,TIMEOUT
+51,GreedyPlayer,260617865,GAMEOVER USER CANCEL UNDECIDED,NOBODY,11,game00051.log,USER CANCEL
+52,RandomPlayer,260617865,1,260617865,26,game00052.log,
+55,RandomPlayer,260617865,0,RandomPlayer,3,game00055.log,ILLEGAL MOVE: Player 1 plays pit 0
+56,260617865,GreedyPlayer,1,GreedyPlayer,13,game00056.log,ILLEGAL MOVE: Player 0 skips turn.
+57,GreedyPlayer,260617865,0,GreedyPlayer,21,game00057.log,
+58,GreedyPlayer,260617865,0,GreedyPlayer,1,game00058.log,TIMEOUT
+59,GreedyPlayer,260617865,0,GreedyPlayer,15,game00059.log,
+60,GreedyPlayer,260617865,0,GreedyPlayer,15,game00060.log,
+61,260617865,GreedyPlayer,1,GreedyPlayer,20,game00061.log,
+62,260617865,GreedyPlayer,1,GreedyPlayer,24,game00062.log,
+63,260617865,GreedyPlayer,1,GreedyPlayer,24,game00063.log,
+64,GreedyPlayer,260617865,0,GreedyPlayer,15,game00064.log,

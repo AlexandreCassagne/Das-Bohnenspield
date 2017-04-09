@@ -2,11 +2,14 @@ package student_player;
 
 import java.util.ArrayList;
 
+import boardgame.Move;
 import bohnenspiel.BohnenspielBoardState;
 import bohnenspiel.BohnenspielMove;
 import bohnenspiel.BohnenspielPlayer;
 import bohnenspiel.BohnenspielMove.MoveType;
+import student_player.mytools.Minimax;
 import student_player.mytools.MyTools;
+import student_player.mytools.Solver;
 
 /** A Hus player submitted by a student. */
 public class StudentPlayer extends BohnenspielPlayer {
@@ -23,33 +26,20 @@ public class StudentPlayer extends BohnenspielPlayer {
 	 * for another example agent.
 	 **/
 	
+	private Solver solver;
+	
 	public BohnenspielMove chooseMove(BohnenspielBoardState board_state)
 	{
+		if (solver == null)
+			solver = Minimax(new Minimax.Node(null, board_state, 0, 0, this.player_id));
+		
 		// Get the contents of the pits so we can use it to make decisions.
 		int[][] pits = board_state.getPits();
 		
 		// Use ``player_id`` and ``opponent_id`` to get my pits and opponent pits.
 		int[] my_pits = pits[player_id];
 		int[] op_pits = pits[opponent_id];
-
-		// Use code stored in ``mytools`` package.
-		MyTools.getSomething();
-
-		// Get the legal moves for the current board state.
-		ArrayList<BohnenspielMove> moves = board_state.getLegalMoves();
-		BohnenspielMove move = moves.get(0);
-
-
-		// We can see the effects of a move like this...
-		BohnenspielBoardState cloned_board_state = (BohnenspielBoardState) board_state.clone();
-		cloned_board_state.move(move);
-
-
-
-		// But since this is a placeholder algorithm, we won't act on that information.
-		return move;
+		
+		
 	}
-	
-	
-	
 }
