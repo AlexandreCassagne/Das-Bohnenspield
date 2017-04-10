@@ -31,20 +31,25 @@ public class StudentPlayer extends BohnenspielPlayer {
 	
 	public BohnenspielMove chooseMove(BohnenspielBoardState board_state)
 	{
-		if (solver == null) {
-			solver = new Minimax();
-			solver.findAndSet(board_state, null, depth);
-		};
+		try {
+			if (solver == null) {
+				solver = new Minimax(board_state, this.player_id, this.opponent_id);
+				solver.run(6);
+			}
+			else {
+				System.out.println("Found board: " + solver.findAndSet(board_state, null, 5));
+				solver.run();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		// Ensure unused memory is cleared
+		System.gc();
 		
-		
-		// Get the contents of the pits so we can use it to make decisions.
-		int[][] pits = board_state.getPits();
-		
-		// Use ``player_id`` and ``opponent_id`` to get my pits and opponent pits.
-		int[] my_pits = pits[player_id];
-		int[] op_pits = pits[opponent_id];
-		
-		
+		BohnenspielMove nextMove = solver.getStart().next.move;
+		return nextMove;
+
 	}
 }
