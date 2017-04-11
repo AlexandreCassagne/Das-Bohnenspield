@@ -18,10 +18,6 @@ public class GreedyBohnenspielPlayer extends BohnenspielPlayer {
     /** Choose moves randomly. */
     public BohnenspielMove chooseMove(BohnenspielBoardState board_state)
     {
-
-        // Use code stored in ``mytools`` package.
-        MyTools.getSomething();
-
         // Get the legal moves for the current board state.
         ArrayList<BohnenspielMove> moves = board_state.getLegalMoves();
 

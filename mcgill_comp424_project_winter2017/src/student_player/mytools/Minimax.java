@@ -12,11 +12,14 @@ public class Minimax implements Solver<SearchNode> {
 	 * of exploration (stored during execution).
 	 */
 	private SearchNode start;
-	int maxPlayer, minPlayer;
+	private int maxPlayer, minPlayer;
+	
 	
 	// The depth at which to run the algorithm
-	public int depth = 6;
-
+	private int depth = 6;
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
 	/**
 	 * We set maxPlayer to be this search class,
 	 * and minPlayer the opponent.
@@ -28,8 +31,7 @@ public class Minimax implements Solver<SearchNode> {
 		
 		this.minPlayer = opponent;
 		this.maxPlayer = me;
-		
-		HeuristicWizard.maxPlayer = this.maxPlayer;
+	
 	}
 	
 	/**
@@ -66,13 +68,15 @@ public class Minimax implements Solver<SearchNode> {
 	 */
 	public boolean findAndSet(BohnenspielBoardState state, SearchNode node, int depth) throws Exception {
 		if (node == null) {
-			if (getStart() == null)
-				return false;
+			if (getStart() == null) {
+				throw new Exception("Cannot find and set !");
+//				return false;
+			}
 			else
 				node = getStart();
 		}
 		
-		if (node.postState.toString().equals(state.toString())) {
+		if (MyTools.boardStatesEqual(node.postState, state)) { //node.postState.toString().equals(state.toString())) {
 			start = node;
 			return true;
 		}
@@ -84,8 +88,7 @@ public class Minimax implements Solver<SearchNode> {
 		for (SearchNode child : node.children) {
 			if (child == null) break;
 			boolean foundAndSet = findAndSet(state, child, depth - 1);
-			if (foundAndSet)
-				return true;
+			if (foundAndSet) return true;
 		}
 		setState(state);
 		return false; 
@@ -144,17 +147,21 @@ public class Minimax implements Solver<SearchNode> {
 		}
 		node.next = bestNode;
 		if (node.next == null)
-			System.out.println("Found empty node!" + node + depth);
+			System.out.println("Found empty node! " + node + depth);
 		return best;
 	}
 	
+	@Override
 	public void run(int depth) {
+		// Ensure unused memory is cleared
+		System.gc();
+		
 		this.minimax(start, depth);
 	}
 	
 	@Override
 	public void run() {
-		this.minimax(start, depth);
+		this.minimax(start, this.depth);
 	}
 	
 	@Override
