@@ -29,22 +29,24 @@ public final class HeuristicWizard {
 	 */
 	public static int heuristic(SearchNode state) {
 		
+//		return (int) (state.postState.getScore(maxPlayer) - state.postState.getScore(maxPlayer == 1 ? 0 : 1));
+		
 		if (state.postState.getWinner() == maxPlayer)
 			return WIN_ADJUSTMENT;
 		else if (state.postState.getWinner() == minPlayer)
 			return -WIN_ADJUSTMENT;
-		
+
 		int playableMovesMax = playableMoves(state.postState, maxPlayer);
 		int playableMovesMin = playableMoves(state.postState, minPlayer);
-		
+
 		int scoreAdjustment = 0;
 		if (playableMovesMax == 0)
 			scoreAdjustment -= sumScoreLeft(state.postState, minPlayer);
 		else if (playableMovesMin == 0)
 			scoreAdjustment -= sumScoreLeft(state.postState, maxPlayer);
-		
+
 		int delta = playableMovesMax - playableMovesMin;
-		
+
 		return (int) (Math.pow( (state.postState.getScore(maxPlayer) - state.postState.getScore(maxPlayer == 1 ? 0 : 1)),
 				DELTA_SCORE_POWER)
 						+ ((delta >= 0) ? 1 : -1) * Math.pow(delta, DELTA_MOVES_POWER));

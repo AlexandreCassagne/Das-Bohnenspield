@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import bohnenspiel.BohnenspielBoardState;
 import bohnenspiel.BohnenspielMove;
 import bohnenspiel.BohnenspielPlayer;
+import student_player.mytools.AlphaBeta;
 import student_player.mytools.HeuristicWizard;
 import student_player.mytools.Minimax;
 
@@ -24,7 +25,8 @@ public class StudentPlayer extends BohnenspielPlayer {
 	 * for another example agent.
 	 **/
 	
-	private Minimax solver;
+//	private Minimax solver;
+	private AlphaBeta solver;
 	
 	// Time limits (seconds)
 	double firstRun = 30.0;
@@ -42,7 +44,7 @@ public class StudentPlayer extends BohnenspielPlayer {
 				
 				
 				HeuristicWizard.setPlayers(this.player_id, this.opponent_id);
-				solver = new Minimax(board_state, this.player_id, this.opponent_id);
+				solver = new AlphaBeta(board_state, this.player_id, this.opponent_id);
 				
 				shortDepth = calibrateDepth() - 1;
 				solver.setDepth(shortDepth);
